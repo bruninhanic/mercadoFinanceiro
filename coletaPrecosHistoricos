@@ -30,6 +30,6 @@ def coleta_precos(tick):
     
 '''Para a execução do código, salve este arquivo no diretório do notebook e crie um notebook com o seguinte código
 tick = [acao1, acao2, ...]
-from funcoes import coleta_precos
+from coletaPrecosHistoricos import coleta_precos
 data = coleta_precos(tick)
 '''
