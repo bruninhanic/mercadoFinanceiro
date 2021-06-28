@@ -1,3 +1,7 @@
+'''Script para coletar preços históricos diários de várias ações, utilizando a biblioteca pandas_datareader'''
+'''O código também inclui o cálculo das médias móveis exponciais dos preços de fechamento'''
+'''Ele gera um dataset com os preços diários e as médias móveis exponciais das ações desejadas'''
+
 #importar bibliotecas
 import pandas as pd 
 from pandas_datareader import data as wb
@@ -16,7 +20,7 @@ def coleta_precos(tick):
         window1 = 8
         window2 = 21
 
-        # Cria colunas das médias moveis com o periodo informado
+        # Cria colunas das médias moveis exponenciais com o periodo informado
         ticker['MM8'] = ticker["Close"].ewm(span=window1, min_periods=window1).mean()
         
         ticker['MM21'] = ticker["Close"].ewm(span=window2, min_periods=window2).mean()
