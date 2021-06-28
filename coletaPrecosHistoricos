@@ -1,0 +1,35 @@
+#importar bibliotecas
+import pandas as pd 
+from pandas_datareader import data as wb
+
+def coleta_precos(tick):
+    data = pd.DataFrame()
+    for company in tick:
+        print(company)
+        ticker = wb.DataReader(company, data_source='yahoo', start='01-01-2019')
+        ticker['Symbol'] = company
+        ticker.reset_index(inplace=True) 
+    
+        
+        ''' Acrescentar média móvel'''
+    
+        window1 = 8
+        window2 = 21
+
+        # Cria colunas das médias moveis com o periodo informado
+        ticker['MM8'] = ticker["Close"].ewm(span=window1, min_periods=window1).mean()
+        
+        ticker['MM21'] = ticker["Close"].ewm(span=window2, min_periods=window2).mean()
+  
+        data = data.append(ticker, ignore_index = True)
+               
+    
+    data = data.set_index(['Date', 'Symbol'])
+    return data  
+    
+    
+'''Para a execução do código, salve este arquivo no diretório do notebook e crie um notebook com o seguinte código
+tick = [acao1, acao2, ...]
+from funcoes import coleta_precos
+data = coleta_precos(tick)
+'''
