@@ -1,6 +1,6 @@
 '''Script para coletar preços históricos diários de várias ações, utilizando a biblioteca pandas_datareader'''
 '''O código também inclui o cálculo das médias móveis exponciais dos preços de fechamento'''
-'''Ele gera um dataset com os preços diários e as médias móveis exponciais das ações desejadas'''
+'''Ele gera um dataset com os preços diários e as médias móveis exponenciais das ações desejadas'''
 
 #importar bibliotecas
 import pandas as pd 
